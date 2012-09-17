@@ -52,6 +52,15 @@ namespace demo
 		glDeleteLists(base,256);
 	}
 
+	void BitmapFont::drawString(int x, int y, const std::string &text)
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,textureId);
+		glTranslatef(static_cast<GLfloat>(x),static_cast<GLfloat>(y),0.0f);
+		glListBase(base);
+		glCallLists(static_cast<GLsizei>(text.length()),GL_UNSIGNED_BYTE,text.c_str());
+		glDisable(GL_TEXTURE_2D);
+	}
 	const std::string BitmapFont::getFontName() const
 	{
 		return "Bitmap";
