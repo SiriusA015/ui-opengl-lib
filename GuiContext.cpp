@@ -35,5 +35,48 @@ namespace demo
 			return false;
 		}
 	}
+	bool GuiContext::gatherInput() const
+	{
+		bool isRunning = true;
 
+		SDL_Event event;
+
+		int mx, my;
+		SDL_GetMouseState(&mx,&my);
+
+		guiInstance->importMouseMotion(mx,my);
+
+		while(SDL_PollEvent(&event))
+		{
+			switch(event.type)
+			{
+				case SDL_QUIT:
+				{
+					isRunning = false;
+					break;
+				}
+				case SDL_MOUSEBUTTONUP:
+				{
+					guiInstance->importMouseReleased(1);
+					break;
+				}
+				case SDL_MOUSEBUTTONDOWN:
+				{
+					guiInstance->importMousePressed(1);
+					break;
+				}
+				case SDL_KEYDOWN:
+				{
+					guiInstance->importKeyPressed(event.key.keysym.unicode,event.key.keysym.mod);
+					break;
+				}
+				case SDL_KEYUP:
+				{
+					guiInstance->importKeyReleased(event.key.keysym.sym,event.key.keysym.mod);
+					break;
+				}
+			}
+		}
+		return isRunning;
+	}
 }
