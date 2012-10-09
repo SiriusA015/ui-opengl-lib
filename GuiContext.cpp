@@ -35,6 +35,22 @@ namespace demo
 			return false;
 		}
 	}
+
+		void GuiContext::update()
+	{
+		lastFrameIndex = thisFrameIndex;
+		thisFrameIndex = SDL_GetTicks();
+		deltaTime = ((float)(thisFrameIndex-lastFrameIndex))/1000.0f;
+
+		// print FPS counter...
+		char s[8];
+		sprintf(s,"%3.0ffps", 1/deltaTime);
+
+		SDL_WM_SetCaption(s,0);
+
+		guiInstance->importUpdate(deltaTime);
+	}
+	
 	bool GuiContext::gatherInput() const
 	{
 		bool isRunning = true;
