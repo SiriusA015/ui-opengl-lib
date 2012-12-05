@@ -36,7 +36,29 @@ namespace demo
 		}
 	}
 
-		void GuiContext::update()
+	void GuiContext::paint() const
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glLoadIdentity();
+
+		// go to ortho
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		gluOrtho2D(0,800,600,0);
+		glMatrixMode(GL_MODELVIEW);
+
+		
+		// paint the Gui
+		guiInstance->paint();
+
+		// switch back
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+	}
+
+	void GuiContext::update()
 	{
 		lastFrameIndex = thisFrameIndex;
 		thisFrameIndex = SDL_GetTicks();
