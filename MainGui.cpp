@@ -36,16 +36,16 @@ namespace demo
 
 	MainGui::~MainGui()
 	{
-		delete menuItem1;
-		delete menuItem2;
-		delete menuItem3;
-		delete menuItem4;
-		delete menuItem5;
-		delete menuItem6;
+// 		delete menuItem1;
+// 		delete menuItem2;
+// 		delete menuItem3;
+// 		delete menuItem4;
+// 		delete menuItem5;
+// 		delete menuItem6;
 
-		delete menu1;
-		delete menu2;
-		delete menu3;
+// 		delete menu1;
+// 		delete menu2;
+// 		delete menu3;
 
 		delete menuBar;
 	}
